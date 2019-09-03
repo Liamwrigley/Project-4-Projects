@@ -1,7 +1,7 @@
 var express = require('express');
 var cors = require('cors');
 var helmet = require('helmet');
-var knex = require('knex')('./knexfile.js');
+var knex = require('knex')(require('./knexfile.js'));
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -27,7 +27,7 @@ var app = express();
 
 app.use((req, res, next) => {
     req.db = knex;
-    next();
+      next();
 })
 
 app.use(helmet());
