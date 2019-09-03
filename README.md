@@ -13,10 +13,12 @@ Server will be node.js with express.
 
 Database is setup using AWS RDS running MySQL
 ### middleware
+* [Helmet](https://www.npmjs.com/package/helmet)
 * [Cors](https://www.npmjs.com/package/cors)
 * [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 * [Bcryp](https://www.npmjs.com/package/bcrypt)
 * [Knex](https://www.npmjs.com/package/knex)
+* [Validator](https://www.npmjs.com/package/validator)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
