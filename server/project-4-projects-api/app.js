@@ -1,12 +1,14 @@
 var express = require('express');
 var cors = require('cors');
+var helmet = require('helmet');
 var knex = require('knex')('./knexfile.js');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
+var indexRouter = require('./routes/index.js');
+var registerRouter = require('./routes/register.js');
+var loginRouter = require('./routes/login.js');
 
 var corsOptions = {
     origin: 'http:localhost:3000',
@@ -28,6 +30,7 @@ app.use((req, res, next) => {
     next();
 })
 
+app.use(helmet());
 app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
@@ -36,6 +39,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/login', loginRouter);
+app.use(registerRouter);
+app.use(loginRouter);
+
+app.use(function (req, res, next) {
+  res.status(404).send("Sorry can't find that!")
+})
 
 module.exports = app;
